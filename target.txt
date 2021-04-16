@@ -1,0 +1,99 @@
+LANDING PAGE
+TWO OPTIONS rest bakar
+
+1. I AM FAMRMER 2. I AM CONTRACTOR
+
+
+FARMER  
+SIGNUP
+
+
+1. NAME, AGE, VILLAGE,  
+DISTRICT, STATE, ADHAR CARD NUMBER, email , password
+
+
+TASK 
+1.VERIFY AADHAR CARD NUMBER BY 
+Verhoeff algorithm could be done at the end
+
+
+famrmer dashboard
+1. add stock 
+    object id
+    Product quantity = in kg,
+    price, 
+    image
+
+
+2. add LAND
+    objectid
+   type of soil,
+   image,
+   area of LAND,
+   place
+
+
+
+4. contract request
+
+    contract details
+        deny or accept
+        if (deny delete it)
+        else 
+        take insurance 
+        redirect to show accept terms and condtions
+        confirms add to contracts formed section.
+        DELETE IT FROM LAND SECTION
+
+
+
+    
+
+
+
+
+5.contracts formed
+    contracts list
+
+    date payment
+
+
+6. stock add
+    products selled
+
+
+
+
+I AM A CONTRACTOR
+
+1. stock product search by category
+    purchase product
+    if then purchase
+
+
+
+2. contracts
+    search by type of soil  
+    want to from a contract then 
+    agree to terms and condtions
+    contract requested
+
+
+
+
+
+3. my contracts
+
+
+
+
+types of soil
+1. black soil
+2. red soil
+3. Alluvial soil
+4. Desert soil
+5. Marshy and peaty soils
+6. Arid soil
+
+
+
