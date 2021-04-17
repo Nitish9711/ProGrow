@@ -1,0 +1,32 @@
+<div class="navbar-custom">
+    <div class="container">
+      <figure class="logo-img">
+        <a href="/"> <img src="/assets/logo.png" style="opacity: 0.7; width: 70%;"></a>
+      </figure>
+      <div class="menu" id="menu">
+        <nav>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+          <div class="navbarTxt">
+            <!-- <a href="#">Sign In</a> | <a href="sign up.html">Register</a> -->
+            <% if(user){ %>
+              <% if(user.userType==='Farmer'){ %>
+                <a href="/farmers/dashboard">Farmer Dashboard |</a>
+              <% }else{ %>
+                <a href="/contractors/dashboard">Contractor Dashboard |</a>
+              <% } %>
+                <form action="/logout" method="POST" style="display: inline;">
+                    <button type="submit" style="background: none; border: none; color: #6c8294;"><b>Logout</b></button>
+                </form>
+            <% }else{ %>
+                <a href="/contractors/login">Contractor Login |</a>
+                <a href="/farmers/login">Farmer Login</a>
+            <% } %>
+            </div>              
+      </div>
+      <div class="menu-button" id="menu-button"></div>
+    </div>
+  </div>

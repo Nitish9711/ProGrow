@@ -1,0 +1,91 @@
+<%- include('includes/head.ejs') %>
+<link
+rel="icon"
+type="image/png"
+sizes="32x32"
+href="/assets/favicon-32x32.png"
+/>
+<link
+href="https://fonts.googleapis.com/css2?family=Public+Sans&family=Roboto:wght@300;400&display=swap"
+rel="stylesheet"
+/>
+<!-- Fontawesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+<!-- Bootstrap CSS -->
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+crossorigin="anonymous"
+/>
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/styles/index.css" />
+<link rel="stylesheet" href="/styles/contact.css">
+
+<title>ProGrow | Contact Us</title>
+  </head>
+
+  <body>
+    <header class="pricing">
+      <%- include('includes/nav.ejs') %>
+    </header>
+    <main class="about-main">
+      <div class="container">
+        <div class="main-title">
+          <h1><small>Submit a help request and we’ll get in touch shortly.</small></h1>
+        </div>
+        <div class="main-container">
+          <form action="/contact.html" class="contact-form" id="form">
+            <div class="input-container" id="name-container">
+              <input type="text" autocomplete="name" placeholder="Name" id="name" name="name">
+            </div>
+            <div class="input-container" id="email-container">
+              <input  type="text" autocomplete="email" placeholder="Email Address" id="email" name="email">
+            </div>
+            <input type="text" placeholder="Company name" name="company-name">
+            <input type="text" placeholder="Title" name="title">
+            <div class="input-container" id="message-container">
+              <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
+            </div>
+            <!-- <label class="custom-checkbox">
+              <input type="checkbox" class="custom-checkbox-input" value="accept-terms">
+              <span class="custom-checkbox-show custom-checkbox-show--checkbox"></span>
+              <span class="custom-checkbox-text">Stay up-to-date with company announcements and updates to our API</span>
+            </label> -->
+            <button type="submit">Submit</button>
+          </form>
+          <div class="join-message-container">
+            <h4>Join other justice seekers</h4>
+            <div class="enterprises-logos-container">
+              <img src="assets/shared/desktop/tesla.svg" class="tesla-icon"  alt="">
+              <img src="assets/shared/desktop/microsoft.svg" alt="">
+              <img src="assets/shared/desktop/hewlett-packard.svg" alt="">
+              <img src="assets/shared/desktop/oracle.svg" class="oracle-icon" alt="">
+              <img src="assets/shared/desktop/google.svg" class="google-icon" alt="">
+              <img src="assets/shared/desktop/nvidia.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="ready-to-start-container">
+          <h2>
+            Ready to start?
+          </h2>
+          <div class="row ctaRow">
+            <div class="col-md">
+              <a href="/lawyers/signup"><button class="btn btn-secondary registerBtn">I am a lawyer</button></a>
+            </div>
+            <div class="col-md">
+              <a href="/clients/signup"><button class="schedule-button"> I want to hire</button></a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/js/index.js"></script>
+    <script src="/js/ContacfForm.js"></script>
+  </body>
+
+</html>

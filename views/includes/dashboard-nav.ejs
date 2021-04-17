@@ -1,0 +1,37 @@
+<nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <div class="row">
+          <div class="col-4 profile-data">
+              <img src="<%=user.image%>" class="profile-img" alt="profile">
+          </div>
+          <div class="col-8 profile-data" style="justify-content: start;">
+              <span class="farmer-name">Name of farmer</span>
+          </div>
+      </div>
+      <li style="margin-top: 30px;"><a href="/farmers/addStock">Add Stock</a></li>
+      <li><a href="/farmers/land/new">Add Land</a></li>
+      <li><a href="/farmers/contractRequested">Contract Request</a></li>
+      <li><a href="/farmers/contractFormed">Contracts Formed</a></li>
+      <li><a href="/farmers/stockList">Stock sold</a></li>
+      <!-- <li><a href="#team">Team</a></li> -->
+      <!-- <li class="dropdown">
+      <a href="#works" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+     <div class="dropdown-header">Dropdown heading</div>
+     <li><a href="#pictures">Pictures</a></li>
+     <li><a href="#videos">Videeos</a></li>
+     <li><a href="#books">Books</a></li>
+     <li><a href="#art">Art</a></li>
+     <li><a href="#awards">Awards</a></li>
+     </ul>
+     </li> -->
+     <li><a href="/farmers/contact">Contact</a></li>
+   
+      <form action="/logout" method="POST">
+          <button class="btn btn-light" style="padding: 2px 12px; margin-top: 15px; width: 60%;">Logout</button>
+      </form>
+     
+     </ul>
+</nav>

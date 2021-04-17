@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search Land</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <h1>Search Land</h1>
+        <form action="/contractors/dashboard/land" method="POST">
+            <input type="text" name="soilType" placeholder="soilType" list="datalist" value="none" id="soilType">
+            <br>
+            <button>Search</button>
+        </form>
+        <h2>Search Results</h2>
+        <ul id="search-results">
+
+        </ul>
+        <datalist id="datalist">
+            <option value="none">None</option>
+        </datalist>
+        <script>
+            const form = document.querySelector('form');
+            const soilType = document.querySelector('#soilType');
+            const searchResults = document.querySelector('#search-results')
+            form.addEventListener('submit',async (e) => {
+                e.preventDefault();
+                searchResults.innerHTML = '';
+                const data = (await request()).data;
+                console.log(data);
+                for(const stock of data) addCard(stock);
+            })
+            async function request(){
+                const body = new URLSearchParams();
+                body.append('soilType',soilType.value);
+                return axios.post('/contractors/dashboard/land',body);
+            }
+            function addCard(land){
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${land.soilType}
+                    <br>
+                    ${land.area.amount} ${land.area.unit}
+                `;
+                searchResults.append(li);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search Stock</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <h1>Search Stock</h1>
+        <form action="/contractors/dashboard/stock" method="POST">
+            <input type="text" name="name" placeholder="name" list="datalist" value="none" id="name">
+            <br>
+            <input type="text" name="category" placeholder="category" list="datalist" value="none" id="category">
+            <br>
+            <button>Search</button>
+        </form>
+        <h2>Search Results</h2>
+        <ul id="search-results">
+
+        </ul>
+        <datalist id="datalist">
+            <option value="none">None</option>
+            <option value="Crop">Crop</option>
+            <option value="Flowers">Flowers</option>
+            <option value="Cattle">Cattle</option>
+        </datalist>
+        <script>
+            const form = document.querySelector('form');
+            const name = document.querySelector('#name');
+            const category = document.querySelector('#category');
+            const searchResults = document.querySelector('#search-results')
+            form.addEventListener('submit',async (e) => {
+                e.preventDefault();
+                searchResults.innerHTML = '';
+                const data = (await request()).data;
+                for(const stock of data) addCard(stock);
+            })
+            async function request(){
+                const body = new URLSearchParams();
+                body.append('name',name.value);
+                body.append('category',category.value);
+                return axios.post('/contractors/dashboard/stock',body);
+            }
+            function addCard(stock){
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    ${stock.name}
+                    <br>
+                    ${stock.category}
+                    <br>
+                    ${stock.qty.amount} ${stock.qty.unit}
+                    <br>
+                    ${stock.price} / ${stock.qty.unit}
+                `;
+                searchResults.append(li);
+            }
+        </script>
+    </body>
+</html>

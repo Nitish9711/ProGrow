@@ -68,4 +68,19 @@ router.post('/land',authentication.ensureLogin,authorization.ensureFarmer,upload
     res.redirect('/farmers/dashboard');
 }))
 
+router.get('/contractRequested',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
+    res.render('farmers/contracts/contractRequested'); 
+}))
+router.get('/contractFormed',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
+    res.render('farmers/contracts/contractFormed'); 
+}))
+router.get('/stockList',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
+    res.render('farmers/stock/stockList'); 
+}))
+router.get('/contact',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
+    res.render('farmers/contact'); 
+}))
+
+
+
 module.exports = router;
