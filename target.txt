@@ -104,7 +104,8 @@ search
         total amount
         period 
         agree to terms and condtions
-        insurance 
+        insurance   
+        crop
 
     post request
         add farmer requested contract 
@@ -130,7 +131,7 @@ search
 payement
     contract formed update remaining
     payment history
-    
+
 
         
 

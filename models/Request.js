@@ -14,6 +14,10 @@ const requestSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    crop: {
+        type: String,
+        required: true
+    },
     period: {
         type: Number,//in months
         required: true
