@@ -12,12 +12,12 @@ body {
 }
 
 a {
-  color: #ba4270;
+  color: #0b770b;
   text-decoration: none;
 }
 
 a:hover {
-  color: #da6d97;
+  color: #14bb14;
   text-decoration: none;
 }
 
@@ -94,12 +94,12 @@ h6,
 }
 
 #header .logo h1 a {
-  color: #ba4270;
+  color: #0b770b;
   text-decoration: none;
 }
 
 #header .logo h1 a:hover {
-  color: #da6d97;
+  color: #14bb14;
   text-decoration: none;
 }
 
