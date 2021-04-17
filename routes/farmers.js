@@ -87,6 +87,10 @@ router.get('/soldList',authentication.ensureLogin,authorization.ensureFarmer, wr
     }
     res.render('farmers/sold/soldList', {solds});
 }))
+router.get('/landList',authentication.ensureLogin,authorization.ensureFarmer,wrapAsync(async (req,res) => {
+    const lands = await Land.find({farmer: req.user._id});
+    res.render('farmers/land/landList',{lands});
+}))
 router.get('/contact',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
     res.render('farmers/contact'); 
 }))
