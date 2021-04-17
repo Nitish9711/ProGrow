@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const requestSchema = new mongoose.Schema({
-    land: {
+    requestId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Land',
+        ref: 'Request',
         required: true
     },
     contractor: {
@@ -10,26 +10,19 @@ const requestSchema = new mongoose.Schema({
         ref: 'Contractor',
         required: true
     },
-    description: {
-        type: String,
+    farmer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Farmer',
         required: true
     },
-    period: {
-        type: Number,//in months
+    amount: {
+        type: Number,
         required: true
     },
-    totalAmount: {
-        type: Number,//in months
+    date: {
+        type: Date,//in months
+        default: Date.now,
         required: true
-    },
-    amountRemaining: {
-        type: Number,//in months
-        required: true
-    },
-    accepted: {
-        type: Boolean,
-        required: true,
-        default: false
     }
 })
 

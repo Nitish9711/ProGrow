@@ -97,3 +97,41 @@ types of soil
 
 
 
+search
+1.click request contract
+    form 
+        desc
+        total amount
+        period 
+        agree to terms and condtions
+        insurance 
+
+    post request
+        add farmer requested contract 
+            1. farmer show
+            2. contractor show
+
+
+2. farmer choose 
+    if reject 
+        went to rejected.
+        1. farmer show
+        2. contractor show
+    accept
+        1. farmer contract
+        2. payment
+            amount
+            date
+            contract objectid,
+            farmer id
+            contractor id
+
+3.
+payement
+    contract formed update remaining
+    payment history
+    
+
+        
+
+
