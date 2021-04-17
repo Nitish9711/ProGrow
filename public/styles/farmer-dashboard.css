@@ -404,4 +404,15 @@ html { height: 100%;}
    }
 }
 
+.sidenav-link {
+  margin-left: 0 !important;
+}
+
+.addBtn {
+  padding: 2px 12px;
+  margin-left: 15px;
+  height: 30px;
+  width: 120px;
+}
+
 
