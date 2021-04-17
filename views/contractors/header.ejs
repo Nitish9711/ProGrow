@@ -57,20 +57,16 @@
           <li><a class=" nav-link scrollto" href="/contact">Contact Us</a></li>
           
           <li><a class=" nav-link scrollto" href="/contractors/acceptedContract">Accepted Contract</a></li>
+          <li><a class="nav-link scrollto" href="/contractors/paymentHistory">Payment History</a></li>
           <li>
 
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              My profile
+              Settings
             </a>
             <div style="text-align: center;" class="dropdown-menu" aria-labelledby="navbarDropdown">
 
               <img class="profile" src="<%= user.image %>">
-              <a class="dropdown-item" href="/lawyers/<%= user._id %>">
-                <%= user.name["first"] %>
-              </a>
-
-              <a class="dropdown-item" href="/lawyers/<%= user._id %>">profile</a>
               <form action="/logout" method="POST">
                 <button class="dropdown-item" type="submit">Logout</button>
               </form>
