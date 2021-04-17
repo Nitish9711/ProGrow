@@ -170,14 +170,6 @@ router.post('/buyStock',authentication.ensureLogin,authorization.ensureContracto
 })
 
 
-
-
-
-
-
-
-
-
 router.get("/pay", (req, res) => {
     initPayment(Amount).then(
       success => {
