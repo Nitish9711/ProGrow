@@ -10,6 +10,7 @@
   - [About](#about)
   - [Installation Prerequisites](#installation-prerequisites)
   - [How to Run this Website Locally](#how-to-run-this-website-locally)
+  - [Technology Stack](#technology-stack)
   - [Contributors](#contributors)
 
 ## Website Demo
@@ -41,6 +42,16 @@ Our motivation behind this idea was itself contract-based farming and it include
 5. Type ```npm start``` to run the nodejs server.
 6. Open [localhost:300](localhost:3000/) in your browser.
 7. Enjoy!!! :tada: :sparkles:
+
+## Technology Stack
+_The following technologies will be used to make this application -_
+- _NodeJs_
+- _Express_
+- _Multer_
+- _Passport_
+- _Mongoose_
+- _MongoDB Atlas_
+- _ejs_
 
 ## Contributors
 [Puneet Kumar Sehrawat](https://github.com/seneark)
