@@ -41,8 +41,24 @@ router.post('/',authentication.ensureNoLogin,upload.single('image'),wrapAsync(as
 
 router.get('/dashboard',authentication.ensureLogin,authorization.ensureFarmer,wrapAsync(async (req,res) => {
     const stocks = await Stock.find({farmer: req.user._id});
+    const solds = await Sold.find({farmer: req.user._id});
     const lands = await Land.find({farmer: req.user._id});
-    res.render('farmers/dashboard',{stocks,lands});
+    const requests = [];
+
+    let totalAmount = 0, soldAmount = 0;
+    for(const stock of stocks) totalAmount+=stock.qty.amount;
+    for(const sold of solds) soldAmount+=sold.qty.amount;
+
+    res.render('farmers/dashboard',{
+        stocks,
+        lands,
+        stats: {
+            stock: {
+                total: totalAmount,
+                sold: soldAmount
+            }
+        }
+    });
 }))
 
 
