@@ -8,6 +8,7 @@ const Farmer = require('../models/farmer');
 const Stock = require("../models/Stock");
 const Land = require('../models/Land');
 const upload = require('../config/multer');
+const Sold = require('../models/Sold');
 
 router.get('/login',authentication.ensureNoLogin,(req,res) => {
     res.render('farmers/login');
@@ -75,7 +76,16 @@ router.get('/contractFormed',authentication.ensureLogin,authorization.ensureFarm
     res.render('farmers/contracts/contractFormed'); 
 }))
 router.get('/stockList',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
-    res.render('farmers/stock/stockList'); 
+    const stocks = await Stock.find({farmer: req.user._id});
+    res.render('farmers/stock/stockList',{stocks}); 
+}))
+router.get('/soldList',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
+    const solds = await Sold.find({farmer: req.user._id});
+    for(const sold of solds){
+        await sold.populate('Stock').execPopulate();
+        await sold.populate('contractor').execPopulate();
+    }
+    res.render('farmers/sold/soldList', {solds});
 }))
 router.get('/contact',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
     res.render('farmers/contact'); 

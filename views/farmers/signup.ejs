@@ -43,10 +43,10 @@
         <div class="form_holder">
             <h2 class="fs-title" style="color: #fff">steps jquery form with Icons</h2>
             <form id="msform" action="/farmers/" method="POST" enctype="multipart/form-data">
-                <ul id="progressbar"class="clientSignup" style="margin-left: 30%;">
+                <ul id="progressbar" style="margin-left: 20%;">
                     <li class="active">1. Personal Details</li>
                     <li>2. Contact Information</li>
-                    <!-- <li>3. Education and Experience</li> -->
+                    <li>3. Bank Details</li>
                 </ul>
                 <fieldset>
                     <h2 class="fs-title">Personal Details</h2>
@@ -87,49 +87,21 @@
                     <input type="password" name="password" placeholder="Confirm Password" />
 
                     <input type="button" name="previous" class="previous action-button" value="Previous" />
-                    <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                    <input type="button" name="next" class="next action-button" value="Next" />
+                    
                 </fieldset>
 
-                <!-- Education and experience -->
-                <!-- <fieldset>
-                    <h2 class="fs-title">Education Details and Experience</h2>
-                    <div class="eduMainDiv">
-                        <label for="" style="color: #757575;">Education</label>
-                        <div class="eduDataDiv">
-                            <div class="eduData 0" id="education[0]">
-                                <input type="text" name="education[institutionName]" placeholder="College"
-                                    class="educationInput" />
-                                <input type="text" name="education[completed]" placeholder="Year of passing"
-                                    class="educationInput" />
-                                <div class="input-group mb-3">
-                                    <select name="education[degreeType]" class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Choose...</option>
-                                        <option value="Integrated LLB">Integrated LLb</option>
-                                        <option value="LLb">LLB</option>
-                                        <option value="LLM">LLM</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Bank Details -->
+                <fieldset>
+                    <h2 class="fs-title">Bank Details</h2>
 
-                    <div class="expMainDiv">
-                        <label for="" style="color: #757575;">Experience</label>
-                        <div class="eduDataDiv">
-                            <div class="eduData 0" id="education[0]">
-                                <input type="text" name="experience[expType]" placeholder="Experience Type"
-                                    class="educationInput" />
-                                <input type="text" name="experience[years]" placeholder="Years of Experience"
-                                    class="educationInput" />
-                                <input type="text" name="experience[workPlace]" placeholder="Workplace">
-                            </div>
-                        </div>
-                    </div>
-
+                    <input type="text" name="accHolder" id="" placeholder="Account Holder's Name">
+                    <input type="number" name="accNumber" id="" placeholder="Account Number">
+                    <input type="text" name="ifsc" id="" placeholder="IFSC Code">
                     <input type="button" name="previous" class="previous action-button" value="Previous" />
-                    <input type="button" name="next" class="next action-button" value="Next" />
-                </fieldset> -->
+                    <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                    <!-- <input type="button" name="next" class="next action-button" value="Next" /> -->
+                </fieldset>
             </form>
         </div>
 

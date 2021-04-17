@@ -13,7 +13,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/card.css">
     <link rel="stylesheet" href="/styles/farmer-dashboard.css" />
-    <title>Stock List</title>
+    <title>Sold List</title>
 </head>
 
 <body>
@@ -33,18 +33,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <h1>Stock List</h1>
+                            <h1>Sold List</h1>
                             <div class="row">
-                                <% for(const stock of stocks){ %>
+                                <% for(const sold of solds){ %>
                                     <div class="col-3">
                                         <div class="card mt-2">
-                                            <img src="<%=stock.image%>" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                            <img src="<%=sold.Stock.image%>" class="card-img-top" style="height: 200px; object-fit: cover;">
                                             <div class="card-body">
-                                                <h2 class="card-title h4"><%=stock.name%> <span class="badge badge-secondary"><%=stock.category%></span></h2>
+                                                <h2 class="card-title h4"><%=sold.name%></h2>
                                                 <div class="card-text">
-                                                    Quantity: <%=stock.qty.amount%> <%=stock.qty.unit%>
+                                                    Quantity: <%=sold.qty.amount%> <%=sold.qty.unit%>
                                                     <br>
-                                                    Price: <%=stock.price%>/<%=stock.qty.unit%>
+                                                    Price: <%=sold.price%>
+                                                    <br>
+                                                    Sold to: <%=sold.contractor.name.first%> <%=sold.contractor.name.last%>
                                                 </div>
                                             </div>
                                         </div>
