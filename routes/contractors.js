@@ -11,6 +11,7 @@ const Stock = require("../models/Stock");
 const Sold = require("../models/Sold");
 const Land = require('../models/Land')
 const {initPayment, responsePayment} = require("../paytm/services/index");
+const Request = require('../models/Request');
 
 router.get('/login',authentication.ensureNoLogin,(req,res) => {
     res.render('contractors/login');
@@ -196,7 +197,13 @@ router.get("/pay", (req, res) => {
 });
 
 
-
+router.post('/createRequest/:landId',authentication.ensureLogin,authorization.ensureContractor,wrapAsync(async (req,res) => {
+    const request = new Request(req.body);
+    request.land = req.params.landId;
+    request.contractor = req.user._id;
+    await request.save();
+    res.redirect('/contractors/dashboard/land');
+}))
 
 
 
