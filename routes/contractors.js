@@ -88,6 +88,20 @@ router.get(
 		});
 	})
 );
+
+router.get(
+	"/paymentHistory",
+	authentication.ensureLogin,
+	authorization.ensureContractor,
+	wrapAsync(async (req, res) => {
+		Payment.find({ contractor: req.user._id })
+			.populate(["requestId", "contractor", "farmer"])
+			.then((data) => {
+				res.json(data);
+			});
+	})
+);
+
 var Amount = 0;
 var _id;
 var Qty;
