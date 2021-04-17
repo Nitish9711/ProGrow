@@ -69,7 +69,9 @@ app.post('/logout',authentication.ensureLogin,(req,res) => {
     req.logout();
     res.redirect('/');
 })
-
+app.get('/terms', (req, res) => {
+    res.render('termsAndCond')
+})
 app.get('/about',(req,res) => {
     res.render('about');
 })
