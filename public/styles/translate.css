@@ -1,0 +1,39 @@
+
+#google_translate_element {
+    position: absolute !important;
+    top: 10px !important;
+    right: 30px !important;
+    z-index: 100;
+}
+
+.skiptranslate iframe{
+    display: none !important;
+}
+
+.skiptranslate.goog-te-gadget {
+    visibility: hidden !important;
+}
+
+.skiptranslate.goog-te-gadget > div {
+    visibility: visible !important;
+}
+
+/* div[id= ":0.targetLanguage"] {
+    visibility: visible;
+} */
+
+.skiptranslate.goog-te-gadget select{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

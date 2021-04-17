@@ -88,6 +88,20 @@ router.get(
 		});
 	})
 );
+
+router.get(
+	"/paymentHistory",
+	authentication.ensureLogin,
+	authorization.ensureContractor,
+	wrapAsync(async (req, res) => {
+		Payment.find({ contractor: req.user._id })
+			.populate(["requestId", "contractor", "farmer"])
+			.then((data) => {
+				res.json(data);
+			});
+	})
+);
+
 var Amount = 0;
 var _id;
 var Qty;
@@ -105,7 +119,7 @@ router.post("/buyStock/:id", authentication.ensureLogin, authorization.ensureCon
 				Amount = qty * newStock.price;
 			}
 			console.log("here");
-            Response = "buyStock"
+			Response = "buyStock";
 			res.redirect("/contractors/pay");
 		})
 		.catch((err) => console.log(err));
@@ -113,56 +127,57 @@ router.post("/buyStock/:id", authentication.ensureLogin, authorization.ensureCon
 
 // Callback Post Route for buying a Stock
 router.post("/payResponse", authentication.ensureLogin, authorization.ensureContractor, (req, res) => {
-    if(Response == "buyStock"){
-        qty = Qty;
-        _id = _id;
-        Stock.findById(_id)
-            .then((data) => {
-                const newStock = data;
-                newStock.qty.amount = newStock.qty.amount - qty;
-                if (newStock.qty.amount >= 0) {
-                    newQty = {
-                        amount: qty,
-                        unit: data.qty.unit,
-                    };
-                    const sold = new Sold({
-                        farmer: data.farmer,
-                        contractor: req.user._id,
-                        Stock: _id,
-                        qty: newQty,
-                        price: qty * data.price,
-                    });
-                    sold.save();
-                }
-                if (newStock.qty.amount >= 0) {
-                    Stock.findByIdAndUpdate(_id, newStock, { upsert: true }).then((data) => console.log(data));
-                }
-                console.log("here stock");
-                res.redirect("/contractors/dashboard/stock");
-            })
-            .catch((err) => console.log(err));
-    } else {
-        amount = Amount;
-        _id = _id;
-        Request.findById(_id)
-        .populate(['land'])
-        .then(data => {
-            const newStock = data;
-            newStock.amountRemaining = newStock.amountRemaining + Amount;
-            Request.findByIdAndUpdate(_id, newStock, {upsert: true})
-            payment = new Payment({
-                requestId: data._id,
-                contractor: data.contractor,
-                farmer: data.land.farmer,
-                amount: Amount
-            })
-            payment.save()
-            res.redirect('/contractors/acceptedContract')
-        })
-        .catch((err) => console.log(err));
-    }
+	if (Response == "buyStock") {
+		qty = Qty;
+		_id = _id;
+		Stock.findById(_id)
+			.then((data) => {
+				const newStock = data;
+				newStock.qty.amount = newStock.qty.amount - qty;
+				if (newStock.qty.amount >= 0) {
+					newQty = {
+						amount: qty,
+						unit: data.qty.unit,
+					};
+					const sold = new Sold({
+						farmer: data.farmer,
+						contractor: req.user._id,
+						Stock: _id,
+						qty: newQty,
+						price: qty * data.price,
+					});
+					sold.save();
+				}
+				if (newStock.qty.amount >= 0) {
+					Stock.findByIdAndUpdate(_id, newStock, { upsert: true }).then((data) => console.log(data));
+				}
+				console.log("here stock");
+				res.redirect("/contractors/dashboard/stock");
+			})
+			.catch((err) => console.log(err));
+	} else {
+		amount = Amount;
+		_id = _id;
+		Request.findById(_id)
+			.populate(["land"])
+			.then((data) => {
+				const newStock = data;
+				newStock.amountRemaining = newStock.amountRemaining + Amount;
+				Request.findByIdAndUpdate(_id, { amountRemaining: newStock.amountRemaining }, { upsert: true })
+					.then((data) => console.log(data))
+					.catch((err) => console.log(err));
+				payment = new Payment({
+					requestId: data._id,
+					contractor: data.contractor,
+					farmer: data.land.farmer,
+					amount: Amount,
+				});
+				payment.save();
+				res.redirect("/contractors/acceptedContract");
+			})
+			.catch((err) => console.log(err));
+	}
 });
-
 
 router.get("/dashboard/land", authentication.ensureLogin, authorization.ensureContractor, (req, res) => {
 	res.render("contractors/search/land");
@@ -187,9 +202,6 @@ router.post(
 	})
 );
 
-
-
-
 router.get("/acceptedContract", authentication.ensureLogin, authorization.ensureContractor, (req, res) => {
 	//
 	Request.find({ contractor: req.user._id, accepted: true })
@@ -205,18 +217,18 @@ router.get("/acceptedContract", authentication.ensureLogin, authorization.ensure
 router.post("/contractAccept/:id", authentication.ensureLogin, authorization.ensureContractor, (req, res) => {
 	amount = req.body.amount;
 	_id = req.params.id;
-    Request.findById(_id)
-    .then(data => {
-        if(data.totalAmount-data.amountRemaining >= amount){
-            Amount = amount;
-            Response = "contractAccepted"
-            res.redirect("/contractors/pay");
-        } else {
-            res.redirect('/contractors/acceptedContract')
-        }
-    }).catch(err=>console.log(err));
+	Request.findById(_id)
+		.then((data) => {
+			if (data.totalAmount - data.amountRemaining >= amount) {
+				Amount = amount;
+				Response = "contractAccepted";
+				res.redirect("/contractors/pay");
+			} else {
+				res.redirect("/contractors/acceptedContract");
+			}
+		})
+		.catch((err) => console.log(err));
 });
-
 
 router.get("/pay", (req, res) => {
 	initPayment(Amount).then(

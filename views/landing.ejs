@@ -13,6 +13,7 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/translate.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
   <title>ProGrow</title>
 
@@ -35,6 +36,7 @@
 
         <header>
             <%- include('includes/nav.ejs') %>
+            <%- include('includes/translate.ejs') %>
               <section class="hero">
                 <div class="container">
                   <div class="hero-text">
@@ -148,7 +150,7 @@
             }
           </style>
           <iframe src="https://d8w7ts1c64ei9.cloudfront.net/index.html" style="position: fixed; bottom: 100px; right: 5px; border-radius: 10px; border: none;" class="hide" width="500px" height="500px" id="chat-window"></iframe>
-          <button class="btn btn-primary" style="position: fixed; bottom: 5px; right: 5px; border-radius: 50%;" id="chat-btn"><i class="bi bi-chat-dots display-4"></i></button>
+          <button class="btn btn-primary" style="position: fixed; bottom: 15px; right: 25px; border-radius: 50%;" id="chat-btn"><i class="bi bi-chat-dots" style="font-size: 1.8rem;"></i></button>
           <script src="https://d8w7ts1c64ei9.cloudfront.net/lex-web-ui-loader.min.js"></script>
           <script>
             const chatBtn = document.querySelector('#chat-btn');
