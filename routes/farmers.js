@@ -4,7 +4,7 @@ const authentication = require('../middleware/authentication');
 const authorization = require('../middleware/authorization');
 const passport = require('passport');
 const wrapAsync = require('../utils/wrapAsync');
-const Farmer = require('../models/Farmer');
+const Farmer = require('../models/farmer');
 const Stock = require("../models/Stock");
 const Land = require('../models/Land');
 const upload = require('../config/multer');
@@ -86,6 +86,10 @@ router.get('/soldList',authentication.ensureLogin,authorization.ensureFarmer, wr
         await sold.populate('contractor').execPopulate();
     }
     res.render('farmers/sold/soldList', {solds});
+}))
+router.get('/landList',authentication.ensureLogin,authorization.ensureFarmer,wrapAsync(async (req,res) => {
+    const lands = await Land.find({farmer: req.user._id});
+    res.render('farmers/land/landList',{lands});
 }))
 router.get('/contact',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
     res.render('farmers/contact'); 

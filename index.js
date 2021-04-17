@@ -7,7 +7,7 @@ const passport = require('passport');
 const PassportLocal = require('passport-local');
 const AppError = require('./utils/AppError');
 const Contractor = require('./models/Contractor');
-const Farmer = require('./models/Farmer');
+const Farmer = require('./models/farmer');
 const contractorsRouter = require('./routes/contractors');
 const farmersRouter = require('./routes/farmers');
 const authentication = require('./middleware/authentication');
@@ -38,7 +38,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        maxAge: 1000*60*60*24*7
+        maxAge: 60*60*24*7
     }
 }));
 
@@ -69,7 +69,9 @@ app.post('/logout',authentication.ensureLogin,(req,res) => {
     req.logout();
     res.redirect('/');
 })
-
+app.get('/terms', (req, res) => {
+    res.render('termsAndCond')
+})
 app.get('/about',(req,res) => {
     res.render('about');
 })
