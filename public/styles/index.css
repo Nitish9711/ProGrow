@@ -10,7 +10,8 @@
 }
 
 :root {
-    --dark-pink: #ba4270;
+    /* dark pink is not pink reused */
+    --dark-pink: #9fc84c; 
     --link-water-white: #fbfcfe;
     --san-juan-blue: #36536b;
     --mirage-blue: #1b262f;
@@ -345,7 +346,7 @@ footer a:hover {
 }
 
 .schedule-button:hover {
-    background-color: #da6d97;
+    background-color: #c5e87d;
 }
 
 .about-us-button:hover {

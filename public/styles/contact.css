@@ -138,7 +138,7 @@ main {
 
 .custom-checkbox > .custom-checkbox-input:checked + .custom-checkbox-show--checkbox {
     background-image: url("../assets/shared/desktop/icon-check.svg");
-    background-color: #ba4270;
+    background-color: #9fc84c;
 }
 
 .custom-checkbox > .custom-checkbox-input:checked ~ .custom-checkbox-text {
