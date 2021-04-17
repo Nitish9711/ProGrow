@@ -70,6 +70,18 @@ const farmerSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    accNumber: {
+        type: Number,
+        required: true
+    },
+    accHolder: {
+        type: String,
+        required: true,
+    },
+    ifsc: {
+        type: String,
+        required: true,
+    },
     aadhar: {
         type: Number,
         required: true
