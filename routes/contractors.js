@@ -10,6 +10,7 @@ const fs = require('fs').promises;
 const Stock = require("../models/Stock");
 const Sold = require("../models/Sold");
 const Land = require('../models/Land')
+const {initPayment, responsePayment} = require("../paytm/services/index");
 
 router.get('/login',authentication.ensureNoLogin,(req,res) => {
     res.render('contractors/login');
@@ -60,6 +61,66 @@ router.post('/dashboard/stock',authentication.ensureLogin,authorization.ensureCo
     }
 }))
 
+router.get('/stock/:id',authentication.ensureLogin,authorization.ensureContractor,wrapAsync(async (req,res) => {
+    Stock.findById(req.params.id)
+      .then(data =>{
+          res.render('contractors/search/stockInfo',{data: data});
+      })
+}));
+var Amount = 0;
+var _id;
+var Qty;
+router.post
+router.post('/buyStock/:id',authentication.ensureLogin,authorization.ensureContractor,(req,res) => {
+    Qty = req.body.qty;
+    _id = req.params.id;
+    qty=Qty;
+    Stock.findById(_id)
+      .then(data => {
+          const newStock = data;
+          newStock.qty.amount = newStock.qty.amount - qty;
+          if(newStock.qty.amount >= 0){
+              Amount = qty*newStock.price;
+
+          }
+          console.log("here")
+          res.redirect("/contractors/pay")
+
+      }).catch(err => console.log(err));
+})
+
+// Callback Post Route for buying a Stock
+router.post('/payResponse',authentication.ensureLogin,authorization.ensureContractor,(req,res) => {
+    qty = Qty;
+    _id = _id;
+//
+    Stock.findById(_id)
+      .then(data => {
+          const newStock = data;
+          newStock.qty.amount = newStock.qty.amount - qty;
+          if(newStock.qty.amount >= 0){
+              newQty = {
+                  amount: qty,
+                  unit: data.qty.unit
+              }
+              const sold = new Sold({
+                  farmer : data.farmer,
+                  contractor : req.user._id,
+                  Stock: _id,
+                  qty : newQty,
+                  price : qty * data.price,
+              });
+              sold.save();
+          }
+          if(newStock.qty.amount >= 0){
+              Stock.findByIdAndUpdate(_id, newStock, {upsert: true}).then(data => console.log(data));
+          }
+          console.log("here stock")
+          res.redirect("/contractors/dashboard/stock")
+
+      }).catch(err => console.log(err));
+})
+
 router.get('/dashboard/land',authentication.ensureLogin,authorization.ensureContractor,(req,res) => {
     res.render('contractors/search/land');
 })
@@ -105,7 +166,7 @@ router.post('/buyStock',(req,res) => {
         } else {
             Stock.findByIdAndUpdate(_id, newStock, {upsert: true}).then(data => console.log(data));
         }
-        
+
     }).catch(err => console.log(err));
     res.json({msg:"success"})
 })
@@ -119,6 +180,19 @@ router.post('/buyStock',(req,res) => {
 
 
 
+router.get("/pay", (req, res) => {
+    initPayment(Amount).then(
+      success => {
+          res.render("paytmRedirect.ejs", {
+              resultData: success,
+              paytmFinalUrl: 'https://securegw-stage.paytm.in/theia/processTransaction'
+          });
+      },
+      error => {
+          res.send(error);
+      }
+    );
+});
 
 
 

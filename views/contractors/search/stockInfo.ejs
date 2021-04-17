@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Stock</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h1>Search Stock</h1>
+<%= data.name%>
+<%= data.category%>
+<%= data.price%>
+<%=data._id%>
+<form action="/contractors/buyStock/<%= data._id %>" method="POST">
+    <input id="number" type="number" name="qty" max="<%= data.qty.amount%>">
+    <button type="submit">Search</button>
+</form>
+</body>
+</html>
