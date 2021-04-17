@@ -37,8 +37,8 @@
                             <div class="row">
                                 <% for(const sold of solds){ %>
                                     <div class="col-3">
-                                        <div class="card mt-2">
-                                            <img src="<%=sold.Stock.image%>" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                        <div class="card mt-2" style="border-radius: 25px;">
+                                            <img src="<%=sold.Stock.image%>" class="card-img-top" style="height: 200px; object-fit: cover; border-radius: 25px 25px 0 0;">
                                             <div class="card-body">
                                                 <h2 class="card-title h4"><%=sold.name%></h2>
                                                 <div class="card-text">
