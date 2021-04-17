@@ -3,7 +3,6 @@ const requestSchema = new mongoose.Schema({
     requestId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Request',
-        required: true
     },
     contractor: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,4 +25,4 @@ const requestSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Request',requestSchema);
+module.exports = mongoose.model('Payment',requestSchema);
