@@ -92,5 +92,5 @@ app.use((err,req,res,next) => {
     res.status(err.status).render('error',{err});
 });
 
-const port = 80;
+const port = process.env.PORT;
 app.listen(port,() => console.log(`Server is running on port ${port}...`)); 
