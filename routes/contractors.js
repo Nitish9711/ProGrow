@@ -82,11 +82,9 @@ router.post('/buyStock/:id',authentication.ensureLogin,authorization.ensureContr
           newStock.qty.amount = newStock.qty.amount - qty;
           if(newStock.qty.amount >= 0){
               Amount = qty*newStock.price;
-
           }
           console.log("here")
           res.redirect("/contractors/pay")
-
       }).catch(err => console.log(err));
 })
 
@@ -94,7 +92,6 @@ router.post('/buyStock/:id',authentication.ensureLogin,authorization.ensureContr
 router.post('/payResponse',authentication.ensureLogin,authorization.ensureContractor,(req,res) => {
     qty = Qty;
     _id = _id;
-//
     Stock.findById(_id)
       .then(data => {
           const newStock = data;
@@ -118,7 +115,6 @@ router.post('/payResponse',authentication.ensureLogin,authorization.ensureContra
           }
           console.log("here stock")
           res.redirect("/contractors/dashboard/stock")
-
       }).catch(err => console.log(err));
 })
 
@@ -140,10 +136,10 @@ router.post('/dashboard/land',authentication.ensureLogin,authorization.ensureCon
     }
 }))
 
-router.post('/buyStock',(req,res) => {
+router.post('/buyStock',authentication.ensureLogin,authorization.ensureContractor,(req,res) => {
     qty = req.body.qty;
     _id = req.body._id;
-//,authentication.ensureLogin,authorization.ensureContractor
+//
     Stock.findById(_id)
     .then(data => {
         const newStock = data;
@@ -154,8 +150,8 @@ router.post('/buyStock',(req,res) => {
                 unit: data.qty.unit
             }
             const sold = new Sold({
-                // farmer : data.farmer,
-                // contractor : req.user._id,
+                farmer : data.farmer,
+                contractor : req.user._id,
                 Stock: _id,
                 qty : newQty,
                 price : qty * data.price,
