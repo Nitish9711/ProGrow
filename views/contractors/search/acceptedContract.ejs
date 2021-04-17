@@ -14,27 +14,28 @@
 
     <body>
         
-        <main>
+        <main class="container mb-5">
+            <h1 style="margin-top: 100px;">Accepted Contracts</h1>
             <div class="row m-0" id="card-container">
-                <div class="card mt-2">
-                    <div class="card-body">
-                        <% for (var i =0; i <len;  i++ ) { %>
-                            <h2 class="card-title h4"><%= data[i].description %> <span class="badge badge-secondary"><%=data[i].crop%></span></h2>
-                            <div class="card-text">
-                                Period: <%=data[i].period%>
-                                <br>
-                                Amount Paid: <%=data[i].amountRemaining%>
-                                <br/>
-                                Price: <%=data[i].totalAmount%>
-                                <br>
-                                <form action="/contractors/contractAccept/<%=data[i]._id%>" method="POST" class="d-flex mt-2">
-                                    <input id="number" type="number" name="amount" class="form-control mr-2" placeholder="Enter Amount">
-                                    <button type="submit" class="btn btn-primary">Pay</button>
-                                </form>
+                <% for (var i =0; i <len;  i++ ) { %>
+                    <div class="card mt-2">
+                        <div class="card-body">
+                                <h2 class="card-title h4"><%= data[i].description %> <span class="badge badge-secondary"><%=data[i].crop%></span></h2>
+                                <div class="card-text">
+                                    Period: <%=data[i].period%>
+                                    <br>
+                                    Amount Paid: <%=data[i].amountRemaining%>
+                                    <br/>
+                                    Price: <%=data[i].totalAmount%>
+                                    <br>
+                                    <form action="/contractors/contractAccept/<%=data[i]._id%>" method="POST" class="d-flex mt-2">
+                                        <input id="number" type="number" name="amount" class="form-control mr-2" placeholder="Enter Amount">
+                                        <button type="submit" class="btn btn-primary">Pay</button>
+                                    </form>
+                                </div>
                             </div>
-                        <% } %>
-                    </div>
-                </div>  
+                    </div>  
+                <% } %>
             </div>             
         </main>
         
