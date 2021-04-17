@@ -97,7 +97,8 @@ router.get(
 		Payment.find({ contractor: req.user._id })
 			.populate(["requestId", "contractor", "farmer"])
 			.then((data) => {
-				res.json(data);
+				// res.json(data);
+				res.render('contractors/search/paymentHistory',{payments: data});
 			});
 	})
 );
