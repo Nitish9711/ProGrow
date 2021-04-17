@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/styles/translate.css">
 
   <title>Farmer Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
 
 </head>
 
@@ -226,11 +227,14 @@
               <div class="row" style="margin-bottom: 25px;">
                 <div class="col-6">
                   <div class="card" style="width: 425px; border-radius: 20px; padding: 20px;">
-                    <h2>Career Graph</h2>
+                    <h2>Stock Chart</h2>
                     <div>
-                      <canvas id="myChart"></canvas>
+                      <canvas id="myChart"></canvas> 
+                      <!-- <canvas id="myChart"></canvas> -->
                     </div>
-                  </div>
+                   </div> 
+                                   
+
                 </div>
               </div>
             </div>
@@ -241,6 +245,26 @@
       </div>
       <!-- /#wrapper -->
       <!-- Bootstrap JS -->
+      <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+      
+        var totalqty = <%= stats["stock"]["total"] %>;
+        var sold = <%= stats["stock"]["sold"] %>;
+     
+      var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ["Total Quantity Added", "Quantity Sold"],
+          datasets: [{
+            backgroundColor: [
+              "#0000FF",
+              "#00b300",
+            ],
+            data: [totalqty,  sold]
+          }]
+        }
+      });
+      </script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

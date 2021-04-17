@@ -140,6 +140,10 @@ router.delete('/requests/:id',authentication.ensureLogin,authorization.ensureFar
     await Request.findByIdAndDelete(req.params.id);
     res.redirect('/farmers/contractRequested');
 }))
+router.put('/requests/:id',authentication.ensureLogin,authorization.ensureFarmer,wrapAsync(async (req,res) => {
+    await Request.findByIdAndUpdate(req.params.id, {accepted: true}, { upsert: true })
+    res.redirect('/farmers/contractRequested');
+}))
 
 
 
