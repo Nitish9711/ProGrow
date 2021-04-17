@@ -1,191 +1,261 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Fontawesome CDN -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <!-- Fontawesome CDN -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
 
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/styles/index.css" />
-        <link rel="stylesheet" href="/styles/farmer-dashboard.css"/>
-        
-    </head>
-    <body>
-        <div id="wrapper">
-            <div class="overlay"></div>
-             
-                 <!-- Sidebar -->
-                 <%- include('../includes/dashboard-nav') %>
-            
-                 <!-- /#sidebar-wrapper -->
-         
-                 <!-- Page Content -->
-                 <div id="page-content-wrapper">
-                     <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
-                         <span class="hamb-top"></span>
-                         <span class="hamb-middle"></span>
-                         <span class="hamb-bottom"></span>
-                     </button>
-                     <div class="container">
-                        <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                         <div class="row">
-                             <div class="col-lg-9 col-lg-offset-2">
-                                <!-- <a href="/farmers/addStock">New Stock</a> -->
-                                <!-- <a href="/farmers/land/new">New Land</a> -->
-                                
-                                <div class="row">
-                                    <div class="col-3">
-                                        <figure class="logo-img">
-                                            <a href="/"> <img src="/assets/logo.png" style="opacity: 0.7; width: 70%;"></a>
-                                          </figure>
-                                    </div>
-                                    <div class="col-9" style="display: grid; align-items: center;">
-                                        <nav>
-                                            <ul>
-                                              <li><a href="/about">About</a></li>
-                                              <li><a href="/contact">Contact</a></li>
-                                              <div class="navbarTxt" style="display: flex; flex-direction: row; margin-left: 20%;">
-                                                <li><button class="schedule-button addBtn" data-toggle="modal" data-target="#addStock">Add Stock</button></li>
+  <!-- bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-                                                <div class="modal fade" id="addStock" tabindex="-1" aria-labelledby="addStock" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                      <div class="modal-content">
-                                                        <div class="modal-header">
-                                                          <h5 class="modal-title" id="addStockLabel">Add Stock</h5>
-                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                          </button>
-                                                        </div>
-                                                        <form action="/farmers/stock" method="POST" enctype="multipart/form-data">
-                                                            <div class="modal-body">
-                                                                
-                                                                    <input type="text" name="name" class="form-control" placeholder="Name of Stock" />
-                                                                    <input type="text" name="category" class="form-control" placeholder="Cateogory" />
-                                                                    <br>
-                                                                    <input type="number" name="qty[amount]" class="form-control" placeholder="Quantity">
-                                                                    <input type="text" name="qty[unit]" class="form-control" placeholder="Unit">
-                                                                    <input type="number" name="price" class="form-control" placeholder="Price">
-                                                                    <br />
-                                                                    <input type="file" class="form-control" name="image">
-                                                            
-                                                            </div>
-                                                        <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                          <button type="submit" class="btn btn-primary">Add Stock</button>
-                                                        </div>
-                                                    </form>
-                                                      </div>
-                                                    </div>
-                                                  </div>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/farmer-dashboard.css" />
 
-                                                <li><button class="schedule-button addBtn" data-toggle="modal" data-target="#addLand">Add Land</button></li>
+  <title>Farmer Dashboard</title>
 
-                                                <div class="modal fade" id="addLand" tabindex="-1" aria-labelledby="addLand" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                      <div class="modal-content">
-                                                        <div class="modal-header">
-                                                          <h5 class="modal-title" id="addLandLabel">Add Land</h5>
-                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                          </button>
-                                                        </div>
-                                                        <form action="/farmers/land" method="POST" enctype="multipart/form-data">
-                                                            <div class="modal-body">
-                                                                
-                                                                <input type="text" name="soilType" class="form-control" placeholder="Soil Type">
-                                                                <br>
-                                                                <input type="number" name="area[amount]" class="form-control" placeholder="Area">
-                                                                <input type="text" name="area[unit]" class="form-control" placeholder="Area Unit">
-                                                                <br>
-                                                                <p>Location of Land</p>
-                                                                <input type="text" name="address[village]" class="form-control" placeholder="Village">
-                                                                <input type="text" name="address[district]" class="form-control" placeholder="District">
-                                                                <input type="text" name="address[state]" class="form-control" placeholder="State">
-                                                                <br>
-                                                                <input type="file" class="form-control" name="image">
-                                                            
-                                                            </div>
-                                                        <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                          <button type="submit" class="btn btn-primary">Add Land</button>
-                                                        </div>
-                                                    </form>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                              </div>
-                                            </ul>
-                                          </nav>
-                                    </div>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div class="overlay"></div>
+
+    <!-- Sidebar -->
+    <%- include('../includes/dashboard-nav') %>
+
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+          <span class="hamb-top"></span>
+          <span class="hamb-middle"></span>
+          <span class="hamb-bottom"></span>
+        </button>
+        <div class="container">
+          <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="row">
+            <div class="col-lg-10 col-lg-offset-2">
+              <!-- <a href="/farmers/addStock">New Stock</a> -->
+              <!-- <a href="/farmers/land/new">New Land</a> -->
+              <div class="row">
+                <div class="col-3">
+                  <figure class="logo-img">
+                    <a href="/"> <img src="/assets/logo.png" style="opacity: 0.7; width: 70%;"></a>
+                  </figure>
+                </div>
+                <div class="col-9" style="display: grid; align-items: center;">
+                  <nav>
+                    <ul>
+                      <li><a href="/about">About</a></li>
+                      <li><a href="/contact">Contact</a></li>
+                      <div class="navbarTxt" style="display: flex; flex-direction: row; margin-left: 20%;">
+                        <li><button class="schedule-button addBtn" data-toggle="modal" data-target="#addStock">Add
+                            Stock</button></li>
+
+                        <div class="modal fade" id="addStock" tabindex="-1" aria-labelledby="addStock"
+                          aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="addStockLabel">Add Stock</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <form action="/farmers/stock" method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+
+                                  <input type="text" name="name" class="form-control" placeholder="Name of Stock" />
+                                  <input type="text" name="category" class="form-control" placeholder="Cateogory" />
+                                  <br>
+                                  <input type="number" name="qty[amount]" class="form-control" placeholder="Quantity">
+                                  <input type="text" name="qty[unit]" class="form-control" placeholder="Unit">
+                                  <input type="number" name="price" class="form-control" placeholder="Price">
+                                  <br />
+                                  <input type="file" class="form-control" name="image">
+
                                 </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Add Stock</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
 
-                                <h2>Stocks</h2>
-                                <ul>
-                                    <% for(const stock of stocks){ %>
-                                        <li>
-                                            Name: <%=stock.name%>
-                                            <br>
-                                            Category: <%=stock.category%>
-                                            <br>
-                                            Qty: <%=stock.qty.amount%> <%=stock.qty.unit%>
-                                            <br>
-                                            Price: <%=stock.price%> / <%=stock.qty.unit%>
-                                        </li>
-                                    <% } %>
-                                </ul>
-                                <h2>Lands</h2>
-                                <ul>
-                                    <% for(const land of lands){ %>
-                                        <li>
-                                            Soil Type: <%=land.soilType%>
-                                            <br>
-                                            Area: <%=land.area.amount%> <%=land.area.unit%>
-                                            <br>
-                                            Address: <%=land.address.village%>
-                                            <br>
-                                            <%=land.address.district%>
-                                            <br>
-                                            <%=land.address.state%>
-                                        </li>
-                                    <% } %>
-                                </ul>                    
-                             </div>
-                         </div>
-                         <p>
-                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                         </p>
-                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                        </p>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                        </p>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                        </p>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                        </p>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                        </p>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo consectetur modi perspiciatis, aliquid nihil vel placeat. Dolorem non temporibus, voluptatem perspiciatis similique impedit magnam minus quod molestias facere veritatis amet.
-                        </p>
-                     </div>
-                 </div>
-                 <!-- /#page-content-wrapper -->
-         
-             </div>
-             <!-- /#wrapper -->
-        <!-- Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+                        <li><button class="schedule-button addBtn" data-toggle="modal" data-target="#addLand">Add
+                            Land</button></li>
 
-        <!-- Custom JS -->
-        <script src="/js/farmer-dashboard.js"></script>
-    </body>
+                        <div class="modal fade" id="addLand" tabindex="-1" aria-labelledby="addLand" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="addLandLabel">Add Land</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <form action="/farmers/land" method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+
+                                  <input type="text" name="soilType" class="form-control" placeholder="Soil Type">
+                                  <br>
+                                  <input type="number" name="area[amount]" class="form-control" placeholder="Area">
+                                  <input type="text" name="area[unit]" class="form-control" placeholder="Area Unit">
+                                  <br>
+                                  <p>Location of Land</p>
+                                  <input type="text" name="address[village]" class="form-control" placeholder="Village">
+                                  <input type="text" name="address[district]" class="form-control"
+                                    placeholder="District">
+                                  <input type="text" name="address[state]" class="form-control" placeholder="State">
+                                  <br>
+                                  <input type="file" class="form-control" name="image">
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Add Land</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+
+              <div class="card" style="padding: 20px; margin-bottom: 15px; border-radius: 20px;">
+                <section id="lawyer-detail" class="lawyer-detail" style="margin-bottom: 0px !important;">
+                  <div class="profile-info text-left">
+                    <div class="row hidden-xs">
+                      <div class="col-sm-2">
+                        <div class="profile-picture">
+                          <div class="img-wrapper"
+                            style="padding: 10px;width: fit-content;border: solid 1.5px #a1a1a1;border-radius: 5px;">
+                            <img style="height: 145px; border-radius: 7px;" title=<%=user.name.first %>
+                            <%=user.name.last%>
+                              src="<%=user.image%>"
+                                alt=""
+                                class="img-fluid"
+                                />
+                          </div>
+                          <div class="verified mt-2" style="padding: 5px;border: solid 1.5px #a1a1a1;border-radius: 5px; text-align: center; background-color: #4b9142; color: white;"><i class="bi bi-check-circle-fill" style="color: white;"></i> 
+                              Verified
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-10">
+                        <div class="clearfix d-flex justify-content-between">
+                          <div class="name">
+                            <h2 style="font-size: 24px; margin-bottom: 10px">
+                              <b>
+                                <%= user.name.first %>
+                                  <%=user.name.last%>
+                              </b>
+                            </h2>
+                          </div>
+
+                        </div>
+                        <hr />
+                        <div class="row">
+                          <div class="col-sm-7">
+                            <div class="item-info">
+                              <span class="icon-holder">
+                                <i class="bi bi-geo-alt-fill" style="color: #4b9142"></i>
+                              </span>
+                              <span class="item-label">Phone: </span>
+                              <span class="value">
+                                <%=user.phone%>
+                              </span>
+                            </div>
+                            <div class="item-info">
+                              <span class="icon-holder"><i class="bi bi-briefcase-fill"
+                                  style="color: #4b9142"></i></span>
+                              <span class="item-label">Aadhaar Number: </span>
+                              <span class="value">
+                                <%=user.aadhar%>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-sm-5">
+                            <div class="item-info">
+                              <span class="icon-holder"><i class="bi bi-globe" style="color: #4b9142"></i></span>
+                              <span class="item-label">Languages: </span>
+                              <span class="value">English, Hindi</span>
+                            </div>
+                            <div class="item-info">
+                              <span class="icon-holder"><i class="bi bi-signpost-split-fill"
+                                  style="color: #4b9142"></i></span>
+                              <span class="item-label">Age: </span>
+                              <span class="value">
+                                <%=user.age%>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <hr />
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                      <div style="font-weight: bold;">ADDRESS</div>
+                      <div>
+                        <%=user.address.village%>, <%=user.address.district%>, <%=user.address.state%>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                      <div style="font-weight: bold;">BANK DETAILS</div>
+                      <div>
+                        Account Holder's Name: <%=user.accHolder%> <br>
+                          Account Number: <%=user.accNumber%> <br>
+                            IFSC Code: <%=user.ifsc%>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <div class="card" style="width: 425px; border-radius: 20px; padding: 20px;">
+                    <h2>Career Graph</h2>
+                    <div>
+                      <canvas id="myChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="card" style="width: 425px; border-radius: 20px; padding: 20px;">
+                    <h2>Career Graph</h2>
+                    <div>
+                      <canvas id="myChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+      </div>
+      <!-- /#wrapper -->
+      <!-- Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+      <!-- Custom JS -->
+      <script src="/js/farmer-dashboard.js"></script>
+</body>
+
 </html>
