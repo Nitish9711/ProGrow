@@ -53,13 +53,13 @@ Our motivation behind this idea was itself contract-based farming and it include
 > To install Mongodb [Go to this Website](https://docs.mongodb.com/manual/administration/install-community/)
 
 ## How to Run this Website Locally
+Follow these steps to run the application on your local machine -
 
 1. Clone this Repo to your Local Machine.
-2. Open The Terminal/CMD in the folder Janhit-Welfare.
-3. Type ```mongod``` in your Terminal to Run mongodb Server (Ignore if already Running).
-4. Type ```cd backend/jwa && npm install``` to download all the library.
-5. Type ```npm start``` to run the nodejs server.
-6. Open [localhost:300](localhost:3000/) in your browser.
+2. Open The Terminal/CMD in the folder ProGrow.
+3. Run command "npm i" which will install all the node modules required to run this project
+4. Then run command "npm start" to start server
+6. Open [localhost:3000](localhost:3000/) in your browser.
 7. Enjoy!!! :tada: :sparkles:
 
 ## Technology Stack
