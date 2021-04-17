@@ -117,7 +117,7 @@ a:hover {
 
 #msform .action-button {
   width: 100px;
-  background: #ba4270;
+  background: #9fc84c;
   font-weight: 400;
   color: white;
   border: 0 none;
@@ -128,7 +128,7 @@ a:hover {
 }
 #msform .action-button:hover,
 #msform .action-button:focus {
-  box-shadow: 0 0 0 2px white, 0 0 0 3px #ba4270;
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #9fc84c;
 }
 .fs-title {
   font-size: 15px;
@@ -158,7 +158,7 @@ a:hover {
   position: relative;
 }
 #progressbar li.active {
-  color: #ba4270;
+  color: #9fc84c;
 }
 #progressbar li:before {
   content: ""; /*counter(step)*/
@@ -205,12 +205,12 @@ a:hover {
   content: none;
 }
 #progressbar li.active:before {
-  border: 2px solid #ba4270;
-  color: #ba4270;
+  border: 2px solid #9fc84c;
+  color: #9fc84c;
   /* content: "\f164";*/
 }
 #progressbar li.active:after {
-  background: #ba4270;
+  background: #9fc84c;
   color: white;
 }
 .form_holder {

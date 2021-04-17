@@ -41,7 +41,7 @@ h6,
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #ba4270;
+  background: #9fc84c;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -300,7 +300,7 @@ h6,
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #ba4270;
+  color: #9fc84c;
 }
 
 .navbar-mobile .getstarted {
@@ -337,14 +337,14 @@ h6,
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
 .navbar-mobile .dropdown ul li:hover>a {
-  color: #ba4270;
+  color: #9fc84c;
 }
 
 .navbar-mobile .dropdown>.dropdown-active {
   display: block;
 }
 .heading:hover{
-  color:#ba4270;
+  color:#9fc84c;
 }
 /*--------------------------------------------------------------
 # Hero Section
@@ -380,7 +380,7 @@ h6,
   transition: 0.5s;
   margin-top: 30px;
   color: #fff;
-  background: #ba4270;
+  background: #9fc84c;
 }
 
 #hero .btn-get-started:hover {
@@ -609,7 +609,7 @@ section {
 
 .services .icon-box:hover {
   transform: translateY(-5px);
-  border-color: #ba4270;
+  border-color: #9fc84c;
 }
 
 .services .icon i {
@@ -664,7 +664,7 @@ section {
 
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
-  color: #ba4270;
+  color: #9fc84c;
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -729,7 +729,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  background: #ba4270;
+  background: #9fc84c;
   color: #fff;
 }
 
@@ -968,7 +968,7 @@ section {
 }
 
 .team .member .social a:hover {
-  color: #ba4270;
+  color: #9fc84c;
 }
 
 .team .member .social i {
@@ -1086,7 +1086,7 @@ section {
 }
 
 .contact .info .social-links a:hover {
-  background: #ba4270;
+  background: #9fc84c;
   color: #fff;
 }
 
@@ -1342,7 +1342,7 @@ section {
 #footer .footer-top .social-links a {
   font-size: 18px;
   display: inline-block;
-  background: #ba4270;
+  background: #9fc84c;
   color: #fff;
   line-height: 1;
   padding: 8px 0;
@@ -1373,7 +1373,7 @@ section {
 }
 
 #footer .credits a {
-  color: #ba4270;
+  color: #9fc84c;
 }
 
 @media (max-width: 575px) {
