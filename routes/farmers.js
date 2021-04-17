@@ -9,6 +9,7 @@ const Stock = require("../models/Stock");
 const Land = require('../models/Land');
 const upload = require('../config/multer');
 const Sold = require('../models/Sold');
+const Request = require('../models/Request');
 
 router.get('/login',authentication.ensureNoLogin,(req,res) => {
     res.render('farmers/login');
@@ -70,7 +71,17 @@ router.post('/land',authentication.ensureLogin,authorization.ensureFarmer,upload
 }))
 
 router.get('/contractRequested',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
-    res.render('farmers/contracts/contractRequested'); 
+    const requests = [];
+    const lands = await Land.find({farmer: req.user._id});
+    for(const land of lands){
+        const reqs = await Request.find({land: land._id});
+        for(const req of reqs) requests.push(req);
+    }
+    for(const req of requests){
+        await req.populate('land').execPopulate();
+        await req.populate('contractor').execPopulate();
+    }
+    res.render('farmers/contracts/contractRequested',{requests});
 }))
 router.get('/contractFormed',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
     res.render('farmers/contracts/contractFormed'); 
@@ -93,6 +104,11 @@ router.get('/landList',authentication.ensureLogin,authorization.ensureFarmer,wra
 }))
 router.get('/contact',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
     res.render('farmers/contact'); 
+}))
+
+router.delete('/requests/:id',authentication.ensureLogin,authorization.ensureFarmer,wrapAsync(async (req,res) => {
+    await Request.findByIdAndDelete(req.params.id);
+    res.redirect('/farmers/contractRequested');
 }))
 
 

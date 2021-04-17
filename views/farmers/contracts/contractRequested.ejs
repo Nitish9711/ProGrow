@@ -29,7 +29,40 @@
                     <span class="hamb-middle"></span>
                     <span class="hamb-bottom"></span>
                 </button>
-                <p>Contracts Requested</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Contracts Requested</h1>
+                            <div class="row">
+                                <% for(const request of requests){ %>
+                                    <div class="col-3">
+                                        <div class="card mt-2">
+                                            <img src="<%=request.land.image%>" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                            <div class="card-body">
+                                                <h2 class="card-title h4"><%=request.crop%></h2>
+                                                <div class="card-text">
+                                                    Period: <%=request.period%>
+                                                    <br>
+                                                    Amount: <%=request.totalAmount%>
+                                                    <br>
+                                                    Request by: <%=request.contractor.name.first%> <%=request.contractor.name.last%>
+                                                    <div class="mt-2 d-flex">
+                                                        <form action="" class="mr-2">
+                                                            <button class="btn btn-primary">Accept</button>
+                                                        </form>
+                                                        <form action="/farmers/requests/<%=request._id%>?_method=DELETE" method="POST">
+                                                            <button class="btn btn-danger">Reject</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
     </div>
 
