@@ -75,7 +75,9 @@ router.get('/contractRequested',authentication.ensureLogin,authorization.ensureF
     const lands = await Land.find({farmer: req.user._id});
     for(const land of lands){
         const reqs = await Request.find({land: land._id});
-        for(const req of reqs) requests.push(req);
+        for(const req of reqs){
+            if(!req.accepted) requests.push(req);
+        }
     }
     for(const req of requests){
         await req.populate('land').execPopulate();
@@ -84,7 +86,19 @@ router.get('/contractRequested',authentication.ensureLogin,authorization.ensureF
     res.render('farmers/contracts/contractRequested',{requests});
 }))
 router.get('/contractFormed',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
-    res.render('farmers/contracts/contractFormed'); 
+    const requests = [];
+    const lands = await Land.find({farmer: req.user._id});
+    for(const land of lands){
+        const reqs = await Request.find({land: land._id});
+        for(const req of reqs){
+            if(req.accepted) requests.push(req);
+        }
+    }
+    for(const req of requests){
+        await req.populate('land').execPopulate();
+        await req.populate('contractor').execPopulate();
+    }
+    res.render('farmers/contracts/contractFormed',{requests});
 }))
 router.get('/stockList',authentication.ensureLogin,authorization.ensureFarmer, wrapAsync(async (req,res) => {
     const stocks = await Stock.find({farmer: req.user._id});

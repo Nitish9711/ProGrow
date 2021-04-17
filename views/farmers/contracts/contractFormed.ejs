@@ -12,7 +12,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/styles/farmer-dashboard.css" />
-    <title>New Land</title>
+    <title>Contracts Formed</title>
 </head>
 
 <body>
@@ -29,7 +29,32 @@
                     <span class="hamb-middle"></span>
                     <span class="hamb-bottom"></span>
                 </button>
-                <p>Contracts Formed</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h1>Contracts Formed</h1>
+                            <div class="row">
+                                <% for(const request of requests){ %>
+                                    <div class="col-3">
+                                        <div class="card mt-2">
+                                            <img src="<%=request.land.image%>" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                            <div class="card-body">
+                                                <h2 class="card-title h4"><%=request.crop%></h2>
+                                                <div class="card-text">
+                                                    Period: <%=request.period%>
+                                                    <br>
+                                                    Amount: <%=request.totalAmount%>
+                                                    <br>
+                                                    Request by: <%=request.contractor.name.first%> <%=request.contractor.name.last%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
     </div>
 
