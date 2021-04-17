@@ -16,7 +16,7 @@ const authentication = require('./middleware/authentication');
     try{
         await mongoose.connect('mongodb+srv://nitish_kumar:1234567890@cluster0.xt7ds.mongodb.net/progrow?retryWrites=true&w=majority',{
             useNewUrlParser: true,
-            useFindAndModify: false,
+            useFindAndModify: true,
             useUnifiedTopology: true
         });
         console.log('MongoDB is running...');
