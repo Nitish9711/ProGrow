@@ -74,44 +74,33 @@
         
         <main>
             <div class="row">
-                <div class="col-4">
+                <div class="col-3">
                     <form action="/contractors/dashboard/stock" method="POST" id="search-form">
                         <div class="card findLawyerCard">
                             <a href="/" >Home</a>
                             <h2>Search Stock Product</h2>
-
+                            <select name="name" id="name" class="form-control">
+                                <option value="none">Select Product</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Rose">Rose</option>
+                                <option value="Bajra">Bajra</option>
+                            </select> 
                             <select name="category" id="category" class="form-control">
-                                <option value="None">Product Category</option>
+                                <option value="none">Select Category</option>
                                 <option value="Crop">Crop</option>
                                 <option value="Dairy">Diary</option>
                                 <option value="Cattles">Cattles</option>
                                 <option value="Flowers">Flowers</option>
                             </select>
-
-                            <select name="name" id="name" class="name">
-                                <option value="None">Select Product</option>
-                                <option value="Wheat">Wheat</option>
-                                <option value="Rose">Rose</option>
-                                <option value="Bajra">Bajra</option>
-                                <option value="Bombay High Court">Bombay High Court</option>
-                            </select> 
                             <button type="submit" class="btn btn-primary"
                                 style="background-color: #ba4270;">Search</button>
-                            <button type="reset" class="btn btn-secondary">reset</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-8" style="padding-top: 5%;">
-                    <h2>Consult Best Lawyers / Advocates in India</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit deleniti dicta sit dolorum optio amet impedit provident quod mollitia! Sit saepe cumque doloribus consequuntur earum facilis reprehenderit incidunt vero ratione.
-                    </p>
-
-                    <div class="container">
-                        <div class="row" id="lawyer-card-container">
-
-                        </div>
-                      </div>
+                <div class="col-9 mb-4" style="padding-top: 2%;">
+                    <h2>Search Results</h2>
+                    <div class="row m-0" id="card-container"></div>
                 </div>
             </div>
 
@@ -124,14 +113,15 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         
         <script>
-            const form = document.querySelector('form');
+            const form = document.querySelector('#search-form');
             const name = document.querySelector('#name');
             const category = document.querySelector('#category');
-            const searchResults = document.querySelector('#search-results')
+            const cardContainer = document.querySelector('#card-container')
             form.addEventListener('submit',async (e) => {
                 e.preventDefault();
-                searchResults.innerHTML = '';
+                cardContainer.innerHTML = '';
                 const data = (await request()).data;
+                console.log(data);
                 for(const stock of data) addCard(stock);
             })
             async function request(){
@@ -141,17 +131,27 @@
                 return axios.post('/contractors/dashboard/stock',body);
             }
             function addCard(stock){
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    ${stock.name}
-                    <br>
-                    ${stock.category}
-                    <br>
-                    ${stock.qty.amount} ${stock.qty.unit}
-                    <br>
-                    ${stock.price} / ${stock.qty.unit}
+                const div = document.createElement('div');
+                div.classList.add('col-3');
+                div.innerHTML = `
+                    <div class="card mt-2">
+                        <img src="${stock.image}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h2 class="card-title h4">${stock.name} <span class="badge badge-secondary">${stock.category}</span></h2>
+                            <div class="card-text">
+                                Quantity: ${stock.qty.amount} ${stock.qty.unit}
+                                <br>
+                                Price: ${stock.price}/${stock.qty.unit}
+                                <br>
+                                <form action="/contractors/buyStock/${stock._id}" method="POST" class="d-flex mt-2">
+                                    <input id="number" type="number" name="qty" max="${stock.qty.amount}" class="form-control mr-2" placeholder="Enter quantity">
+                                    <button type="submit" class="btn btn-primary">Buy</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                searchResults.append(li);
+                cardContainer.append(div);
             }
         </script>
         <!-- Bootstrap JS -->

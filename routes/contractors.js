@@ -132,6 +132,7 @@ router.post('/dashboard/land',authentication.ensureLogin,authorization.ensureCon
     }
     try{
         const lands = await Land.find(filter);
+        for(const land of lands) await land.populate('farmer').execPopulate();
         res.send(lands);
     }catch{
         res.send([]);
