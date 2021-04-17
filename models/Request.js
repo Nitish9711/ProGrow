@@ -28,7 +28,8 @@ const requestSchema = new mongoose.Schema({
     },
     amountRemaining: {
         type: Number,//in months
-        required: true
+        required: true,
+        default: 0
     },
     accepted: {
         type: Boolean,

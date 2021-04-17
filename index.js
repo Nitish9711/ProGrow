@@ -11,6 +11,7 @@ const Farmer = require('./models/farmer');
 const contractorsRouter = require('./routes/contractors');
 const farmersRouter = require('./routes/farmers');
 const authentication = require('./middleware/authentication');
+const methodOverride = require('method-override');
 
 (async function(){
     try{
@@ -30,6 +31,7 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
 
 app.use(session({
     name: 'session',
