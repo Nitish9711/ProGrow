@@ -13,29 +13,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
     <body>
-        <%- include('../../includes/translate.ejs') %>
+        
         <main class="container mb-5">
-            <h1 style="margin-top: 100px;">Accepted Contracts</h1>
-            <div class="row m-0" id="card-container">
-                <% for (var i =0; i <len;  i++ ) { %>
-                    <div class="card mt-2">
-                        <div class="card-body">
-                                <h2 class="card-title h4"><%= data[i].description %> <span class="badge badge-secondary"><%=data[i].crop%></span></h2>
-                                <div class="card-text">
-                                    Period: <%=data[i].period%>
-                                    <br>
-                                    Amount Paid: <%=data[i].amountRemaining%>
-                                    <br/>
-                                    Price: <%=data[i].totalAmount%>
-                                    <br>
-                                    <form action="/contractors/contractAccept/<%=data[i]._id%>" method="POST" class="d-flex mt-2">
-                                        <input id="number" type="number" name="amount" class="form-control mr-2" placeholder="Enter Amount">
-                                        <button type="submit" class="btn btn-primary">Pay</button>
-                                    </form>
-                                </div>
-                            </div>
-                    </div>  
-                <% } %>
+            <h1 style="margin-top: 100px;">Payment History</h1>
+            <!-- <style>
+                table, th, td {
+                    border: 1px solid black;
+                }
+            </style> -->
+            <div class="row m-0">
+                <table class="w-100 table table-striped">
+                    <tr>
+                        <th>Paid To</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                    <% for(const payment of payments){ %>
+                        <tr>
+                            <td><%=payment.farmer.name.first%> <%=payment.farmer.name.last%></td>
+                            <td><%=payment.amount%></td>
+                            <td><%=payment.date%></td>
+                        </tr>
+                    <% } %>
+                </table>
             </div>             
         </main>
         
