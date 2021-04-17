@@ -128,11 +128,40 @@
                                 ${land.address.state}
                                 <br>
                                 Area: ${land.area.amount} ${land.area.unit}
+                                <br>
+                                <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#land-${land._id}">Create Contract</button>
                             </div>
                         </div>
                     </div>
                 `;
                 cardContainer.append(div);
+
+                const modal = document.createElement('div');
+                modal.classList.add('modal','fade');
+                modal.id = `land-${land._id}`;
+                modal.dataset.backdrop = 'static';
+                modal.dataset.keyboard = 'false';
+                modal.setAttribute('tabindex','-1');
+                modal.innerHTML = `
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                        </div>
+                    </div>
+                </div>
+                `;
+                document.body.append(modal);
             }
         </script>
          <!-- Bootstrap JS -->
