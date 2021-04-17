@@ -3,6 +3,7 @@
     position: absolute !important;
     top: 10px !important;
     right: 30px !important;
+    z-index: 100;
 }
 
 .skiptranslate iframe{

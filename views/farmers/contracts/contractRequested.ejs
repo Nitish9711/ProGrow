@@ -12,6 +12,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/styles/farmer-dashboard.css" />
+    <link rel="stylesheet" href="/styles/translate.css">
     <title>Contracts Requested</title>
 </head>
 
@@ -21,6 +22,7 @@
 
         <!-- Sidebar -->
         <%- include('../../includes/dashboard-nav') %>
+        <%- include('../../includes/translate.ejs') %>
             <!-- Page Content -->
             <!-- Page Content -->
             <div id="page-content-wrapper">
@@ -47,7 +49,7 @@
                                                     <br>
                                                     Request by: <%=request.contractor.name.first%> <%=request.contractor.name.last%>
                                                     <div class="mt-2 d-flex">
-                                                        <form action="" class="mr-2">
+                                                        <form action="/farmers/requests/<%=request._id%>?_method=PUT" method="POST" class="mr-2">
                                                             <button class="btn btn-primary">Accept</button>
                                                         </form>
                                                         <form action="/farmers/requests/<%=request._id%>?_method=DELETE" method="POST">

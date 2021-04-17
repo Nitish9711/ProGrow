@@ -15,6 +15,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="stylesheet" href="/css/signup.css" />
+    <link rel="stylesheet" href="/styles/translate.css">
 
     <title>ProGrow | Sign Up as Farmer</title>
 
@@ -38,10 +39,9 @@
             <br>
             <button>Signup</button>
         </form> -->
-
+        <%- include('../includes/translate.ejs') %>
         <a class="schedule-button" href="/">home</a>
         <div class="form_holder">
-            <h2 class="fs-title" style="color: #fff">steps jquery form with Icons</h2>
             <form id="msform" action="/farmers/" method="POST" enctype="multipart/form-data">
                 <ul id="progressbar" style="margin-left: 20%;">
                     <li class="active">1. Personal Details</li>
