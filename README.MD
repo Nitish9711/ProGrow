@@ -73,6 +73,7 @@ _The following technologies will be used to make this application -_
 - _Mongoose_
 - _MongoDB Atlas_
 - _ejs_
+- _AWS lex_
 
 ## Contributors
 
