@@ -19,8 +19,6 @@
 
 ## Website Demo
 
-[Click Here to Watch Video](https://youtu.be/KYYQLx76zUM)  
-[Click Here to See the Presentation](https://docs.google.com/presentation/d/1HBsWIlOIUaYAGLyz3aeXnn6IkOUGX1hDDlvm06By6hY/edit?usp=sharing)
 
 [Website Link](https://progrow.herokuapp.com/)
 
